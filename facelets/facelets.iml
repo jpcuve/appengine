@@ -24,11 +24,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev" level="application_server_libraries" />
-    <orderEntry type="library" name="AppEngine API" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev 1.9.48" level="application_server_libraries" />
     <orderEntry type="library" name="Maven: org.apache.myfaces.core:myfaces-api:2.2.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.myfaces.core:myfaces-impl:2.2.11" level="project" />
