@@ -6,35 +6,27 @@ import javax.persistence.*;
  * Created by jpc on 28-12-16.
  */
 @Entity
+@Table(name = "binder")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "Host")
+    private String host;
+    @Column(name = "User")
+    private String user;
 
-    public Employee() {
+    public String getHost() {
+        return host;
     }
 
-    public Employee(String name) {
-        this.name = name;
+    public void setHost(String host) {
+        this.host = host;
     }
 
-    public Long getId() {
-        return id;
+    public String getUser() {
+        return user;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
 }

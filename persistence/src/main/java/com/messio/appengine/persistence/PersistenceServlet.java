@@ -20,21 +20,30 @@ public class PersistenceServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        res.setContentType("text/html");
+        res.getOutputStream().write("<html><head/><body>Persistence Servlet<ul>".getBytes());
         // get an EntityManagerFactory using the Persistence class
         // It is not recommended to obtain a factory often, as construction of a
         // factory is a costly operation. Typically you will like to cache
         // a factory and then refer it for repeated use
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("test");
+        final EntityManagerFactory factory = Persistence.createEntityManagerFactory("test");
 
         // get an EntityManager from the factory
-        EntityManager em = factory.createEntityManager();
+        final EntityManager em = factory.createEntityManager();
 
         // Begin a transaction
         em.getTransaction().begin();
 
-        em.persist(new Employee("jpc"));
-        em.persist(new Employee("annie"));
-        em.persist(new Employee("frans"));
+        final List<Employee> employees = em.createQuery("select e from Employee e", Employee.class).getResultList();
+        for (final Employee employee: employees){
+            res.getOutputStream().write(String.format("<li>%s</li>", employee.getUser()).getBytes());
+
+        }
 
         // query for all employees who work in our research division
         // and put in over 40 hours a week average
@@ -58,12 +67,6 @@ public class PersistenceServlet extends HttpServlet {
 
         // free the resources
         em.close();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-        res.setContentType("text/html");
-        res.getOutputStream().write("<html><head/><body>Persistence Servlet</body></html>".getBytes());
+        res.getOutputStream().write("</ul></body></html>".getBytes());
     }
 }
