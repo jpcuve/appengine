@@ -12,6 +12,17 @@
     </h:head>
     <h:body>
         Hello world, facelets3 #{2 + 3}  #{bean.test}
+        <h:form>
+            <h:inputText value="#{bean.text}"/>
+            <h:commandButton value="Add" action="#{bean.addText}"/>
+            <ul>
+                <ui:repeat value="#{bean.texts}" var="text">
+                    <li>
+                        <h:outputText value="#{text}"/>
+                    </li>
+                </ui:repeat>
+            </ul>
+        </h:form>
     </h:body>
 </f:view>
 </html>
