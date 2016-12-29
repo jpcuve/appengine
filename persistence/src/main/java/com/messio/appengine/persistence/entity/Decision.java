@@ -9,11 +9,19 @@ import javax.persistence.*;
 @Table(name = "decision")
 public class Decision {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
     @Basic
     @Column(name = "reference")
     private String reference;
+
+    public Decision() {
+    }
+
+    public Decision(String reference) {
+        this.reference = reference;
+    }
 
     public long getId() {
         return id;
