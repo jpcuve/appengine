@@ -1,10 +1,5 @@
 package com.messio.appengine.persistence;
 
-import com.messio.appengine.persistence.entity.Employee;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 

@@ -1,11 +1,10 @@
 package com.messio.appengine.persistence;
 
-import com.messio.appengine.persistence.entity.Employee;
+import com.messio.appengine.persistence.entity.Decision;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +38,9 @@ public class PersistenceServlet extends HttpServlet {
         // Begin a transaction
         em.getTransaction().begin();
 
-        final List<Employee> employees = em.createQuery("select e from Employee e", Employee.class).getResultList();
-        for (final Employee employee: employees){
-            res.getOutputStream().write(String.format("<li>%s</li>", employee.getUser()).getBytes());
-
+        final List<Decision> decisions = em.createQuery("select d from Decision d", Decision.class).setMaxResults(100).getResultList();
+        for (final Decision decision: decisions){
+            res.getOutputStream().write(String.format("<li>%s</li>", decision.getReference()).getBytes());
         }
 
         // query for all employees who work in our research division
