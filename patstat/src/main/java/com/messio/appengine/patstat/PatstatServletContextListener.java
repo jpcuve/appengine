@@ -8,7 +8,6 @@ import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
-import org.flywaydb.core.Flyway;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -22,11 +21,6 @@ public class PatstatServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-/*
-        final Flyway flyway = new Flyway();
-        flyway.setDataSource("jdbc:mysql://localhost:3306/orcl", "scott", "tiger");
-        flyway.migrate();
-*/
         try {
             final Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/orcl", "scott", "tiger");
             final Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
