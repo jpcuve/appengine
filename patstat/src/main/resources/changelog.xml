@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="jpc">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="customers"/>
+            </not>
+        </preConditions>
+
+        <!-- customers -->
+        <createTable tableName="customers">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="run_id" type="varchar(64)">
+                <constraints nullable="false" uniqueConstraintName="uk_customer_run_id" unique="true"/>
+            </column>
+            <column name="active" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="small_ecosim" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="customers" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
+
+        <!-- users -->
+        <createTable tableName="users">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_customer_id" referencedTableName="customers" referencedColumnNames="id"/>
+            </column>
+            <column name="manager1_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="manager2_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="varchar(2)" defaultValue="en">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(64)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="company_representative" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="male" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="users" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
+        <addForeignKeyConstraint constraintName="fk_user_manager1_id" baseTableName="users" baseColumnNames="manager1_id" referencedTableName="users" referencedColumnNames="id"/>
+        <addForeignKeyConstraint constraintName="fk_user_manager2_id" baseTableName="users" baseColumnNames="manager2_id" referencedTableName="users" referencedColumnNames="id"/>
+
+        <!-- user roles -->
+        <createTable tableName="user_roles">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_roles_user_id" referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="username" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="user_roles" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
+        <addUniqueConstraint constraintName="uk_user_passwords_username_role" tableName="user_roles" columnNames="username,role"/>
+
+        <!-- user passwords -->
+        <createTable tableName="user_passwords">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_passwords_user_id" referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="modified" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- sims -->
+        <createTable tableName="sims">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_sim_customer_id" referencedTableName="customers" referencedColumnNames="id"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="fk_sim_user_id" referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="line" type="varchar(255)">
+                <constraints nullable="false" uniqueConstraintName="uk_sim_line" unique="true"/>
+            </column>
+            <column name="professional_usage_only" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="muac" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ranked" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="sims" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
+
+    </changeSet>
+
+    <changeSet id="2" author="jpc">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="customers"/>
+        </preConditions>
+        <insert tableName="customers">
+            <column name="run_id">BE_CLICYC_01</column>
+        </insert>
+        <insert tableName="users">
+            <column name="customer_id">1</column>
+            <column name="email">jpcuvelliez@gmail.com</column>
+            <column name="username">jpc</column>
+            <column name="password">6a0ebbddcaf861536e2816735e5a7d247e6b463fb7e768abca5f26c7f9c2f5cb</column>
+            <column name="language">fr</column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id">1</column>
+            <column name="username">jpc</column>
+            <column name="role">SUPERVISOR</column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id">1</column>
+            <column name="username">jpc</column>
+            <column name="role">ADMINISTRATOR</column>
+        </insert>
+        <insert tableName="sims">
+            <column name="customer_id">1</column>
+            <column name="user_id">1</column>
+            <column name="line">0478/376697</column>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="3" author="jpc">
+        <addColumn tableName="customers">
+            <column name="created" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="creator" type="bigint(10)"/>
+            <column name="updated" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="updator" type="bigint(10)"/>
+        </addColumn>
+        <addColumn tableName="users">
+            <column name="created" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="creator" type="bigint(10)"/>
+            <column name="updated" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="updator" type="bigint(10)"/>
+        </addColumn>
+        <addColumn tableName="sims">
+            <column name="created" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="creator" type="bigint(10)"/>
+            <column name="updated" type="datetime" valueDate="1970-01-01T00:00:00"/>
+            <column name="updator" type="bigint(10)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
