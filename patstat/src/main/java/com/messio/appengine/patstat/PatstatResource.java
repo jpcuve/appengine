@@ -19,7 +19,10 @@ import java.util.List;
 public class PatstatResource {
     private EntityManagerFactory factory;
 
+
+
     public PatstatResource() {
+        System.out.println("creating new patstat resource");
         this.factory = Persistence.createEntityManagerFactory("test");
     }
 

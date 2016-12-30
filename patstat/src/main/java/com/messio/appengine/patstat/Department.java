@@ -15,7 +15,7 @@ public class Department {
     @Column(name = "dname")
     private String name;
     @Basic
-    @Column
+    @Column(name = "loc")
     private String location;
 
     public Integer getId() {

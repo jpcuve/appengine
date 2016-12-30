@@ -4,9 +4,10 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>com.messio.appengine.patstat.Department</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/orcl"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="scott"/>
+            <property name="javax.persistence.jdbc.password" value="tiger"/>
         </properties>
     </persistence-unit>
 </persistence>
