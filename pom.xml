@@ -35,6 +35,7 @@
         <module>persistence</module>
         <module>rest</module>
         <module>patstat</module>
+        <module>cdi</module>
     </modules>
 
     <dependencies>

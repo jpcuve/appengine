@@ -22,7 +22,9 @@
       </configuration>
     </facet>
     <facet type="google-app-engine" name="Google App Engine">
-      <configuration />
+      <configuration>
+        <sdk-home-path>$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.48/appengine-java-sdk/appengine-java-sdk-1.9.48</sdk-home-path>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
