@@ -26,6 +26,7 @@ public class PatstatServletContextListener implements ServletContextListener {
             final Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
             final ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
             final Liquibase liquibase = new Liquibase("changelog.xml", resourceAccessor, database);
+            liquibase.dropAll();
             liquibase.update(new Contexts(), new LabelExpression());
         } catch (Exception e){
             e.printStackTrace();
