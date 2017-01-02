@@ -1,6 +1,5 @@
 package com.messio.appengine.cdi;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -21,6 +20,7 @@ public class CdiResource {
     @Path("/test")
     public String test() {
         final ApplicationBean applicationBean = requestBean.getSessionBean().getApplicationBean();
+        System.out.println("application bean: " + applicationBean);
         return "test";
     }
 
