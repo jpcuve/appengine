@@ -15,6 +15,6 @@ import java.util.Set;
 public class CdiApplication extends Application {
     @Override
     public Set<Class<?>> getClasses(){
-        return new HashSet<Class<?>>(Arrays.asList(CdiResource.class));
+        return new HashSet<Class<?>>(Arrays.asList(CdiResource.class, ProductResource.class));
     }
 }
