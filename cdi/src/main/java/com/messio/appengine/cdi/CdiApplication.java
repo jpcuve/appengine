@@ -10,10 +10,8 @@ import java.util.Set;
 /**
  * Created by jpc on 12/29/16.
  */
-/*
 @ApplicationPath("/")
 @ApplicationScoped
-*/
 public class CdiApplication extends Application {
     @Override
     public Set<Class<?>> getClasses(){

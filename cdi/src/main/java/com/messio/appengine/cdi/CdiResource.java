@@ -10,11 +10,9 @@ import javax.ws.rs.Produces;
 /**
  * Created by jpc on 12/30/16.
  */
-/*
 @Path("/cdi")
 @Produces({"application/json"})
-@ApplicationScoped
-*/
+@RequestScoped
 public class CdiResource {
     @Inject
     private RequestBean requestBean;

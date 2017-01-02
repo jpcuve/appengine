@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
+    <facet type="google-app-engine" name="Google App Engine">
+      <configuration>
+        <sdk-home-path>$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.48/appengine-java-sdk/appengine-java-sdk-1.9.48</sdk-home-path>
+      </configuration>
+    </facet>
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
@@ -9,11 +14,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-      </configuration>
-    </facet>
-    <facet type="google-app-engine" name="Google App Engine">
-      <configuration>
-        <sdk-home-path>$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.48/appengine-java-sdk/appengine-java-sdk-1.9.48</sdk-home-path>
       </configuration>
     </facet>
   </component>
@@ -26,19 +26,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev 1.9.48" level="application_server_libraries" />
-    <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev 1.9.482" level="application_server_libraries" />
-    <orderEntry type="library" name="AppEngine API" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jcdi_1.1_spec:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-interceptor_1.2_spec:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.openwebbeans:openwebbeans-impl:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xbean:xbean-finder-shaded:4.5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xbean:xbean-asm5-shaded:4.5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.openwebbeans:openwebbeans-spi:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.openwebbeans:openwebbeans-web:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.openwebbeans:openwebbeans-el22:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.weld.servlet:weld-servlet:2.1.2.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-jackson-provider:3.0.19.Final" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.12" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.12" level="project" />
