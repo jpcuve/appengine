@@ -19,6 +19,15 @@ public class Product {
     @XmlElement(required = true)
     private BigDecimal price;
 
+    public Product() {
+    }
+
+    public Product(int id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }
