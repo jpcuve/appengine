@@ -17,8 +17,7 @@ public class ProductResource {
     @Path("/single")
     @Produces("application/xml")
     public Product getProduct() {
-        Product prod = new Product(1, "Mattress", new BigDecimal("500.23"));
-        return prod;
+        return new Product(1, "Mattress", new BigDecimal("500.23"));
     }
 
     @GET
